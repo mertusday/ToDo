@@ -14,42 +14,47 @@ public class Add extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
+        final EditText title = (EditText)findViewById(R.id.EditTitle);
+        final EditText date = (EditText)findViewById(R.id.EditDate);
+        final EditText des = (EditText)findViewById(R.id.EditDescription);
+        final EditText notes = (EditText)findViewById(R.id.EditNotes);
+        final EditText comp = (EditText)findViewById(R.id.EditCompletion);
+        final EditText weight = (EditText)findViewById(R.id.EditWeight);
+
         Button go = (Button) findViewById(R.id.AddNewTask);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText title = (EditText)view.findViewById(R.id.EditTitle);
                 String t = title.getText().toString();
-                EditText date = (EditText)view.findViewById(R.id.EditDate);
                 String da = date.getText().toString();
-                EditText des = (EditText)view.findViewById(R.id.EditDescription);
                 String de = des.getText().toString();
-                EditText notes = (EditText)view.findViewById(R.id.EditNotes);
                 String n = notes.getText().toString();
-                EditText comp = (EditText)view.findViewById(R.id.EditCompletion);
-                int c = Integer.parseInt(comp.getText().toString());
-                EditText weight = (EditText)view.findViewById(R.id.EditWeight);
-                int w = Integer.parseInt(weight.getText().toString());
 
-                System.out.println(t);
-                System.out.println(da);
-                System.out.println(de);
-                System.out.println(n);
-                System.out.println(c);
-                System.out.println(w);
+                int c;
+                try
+                {
+                    Integer.parseInt(comp.getText().toString());
+                    c=Integer.parseInt(comp.getText().toString());
+                } catch (NumberFormatException ex)
+                {
+                    c=0;
+                }
+
+                int w;
+                try
+                {
+                    Integer.parseInt(weight.getText().toString());
+                    w=Integer.parseInt(comp.getText().toString());
+                } catch (NumberFormatException ex)
+                {
+                    w=1;
+                }
 
 
-                /*
-                ScheduleItem input = new ScheduleItem(title.getText().toString(),
-                        date.getText().toString(),
-                        des.getText().toString(),
-                        notes.getText().toString(),
-                        Integer.parseInt(comp.getText().toString()),
-                        Integer.parseInt(weight.getText().toString()));
+                ScheduleItem input = new ScheduleItem(t, da, de, n, c, w);
 
                 ActivityList lis = ActivityList.getInstance();
                 lis.addTask(input);
-                */
 
                 Intent intent = new Intent(Add.this, ToDoList.class);
                 startActivity(intent);

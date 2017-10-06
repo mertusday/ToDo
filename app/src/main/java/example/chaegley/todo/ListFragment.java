@@ -7,9 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import java.util.List;
 
@@ -34,9 +37,10 @@ public class ListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
-        Button add = (Button)view.findViewById(R.id.add);;
-        Button sort = (Button)view.findViewById(R.id.sort);;
-        Button search = (Button)view.findViewById(R.id.search);;
+        Button add = (Button)view.findViewById(R.id.add);
+        Button sort = (Button)view.findViewById(R.id.sort);
+        Button search = (Button)view.findViewById(R.id.search);
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,13 +50,27 @@ public class ListFragment extends Fragment {
             }
         });
 
+        /*
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),Search.class);
+                startActivity(intent);
+            }
+        });
+        */
+
+        sort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),sort.class);
+                startActivity(intent);
+            }
+        });
+
+
         toDoRecyclerView = view.findViewById(R.id.recycler_view);
         toDoRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        ScheduleItem test = new ScheduleItem("title","due","desc","notes",0,0);
-        ActivityList act = ActivityList.getInstance();
-        act.addTask(test);
-
 
 
         updateUI();
@@ -67,27 +85,34 @@ public class ListFragment extends Fragment {
         toDoRecyclerView.setAdapter(taskMaster);
     }
 
-    private void sort(int type){
-        // type = 1 sort by date
-        // type = 2 sort by priority
-    }
-
     private class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ScheduleItem item;
         private TextView title;
         private TextView details;
+        private TextView notes;
+        private TextView date;
+        private ProgressBar completion;
+
+
 
         public TaskHolder(LayoutInflater lf, ViewGroup vg){
             super(lf.inflate(R.layout.single_task,vg, false));
             itemView.setOnClickListener(this);
             title = (TextView) itemView.findViewById(R.id.taskName);
             details = (TextView) itemView.findViewById(R.id.details);
+            notes = (TextView) itemView.findViewById(R.id.notes);
+            date = (TextView) itemView.findViewById(R.id.date);
+            completion = (ProgressBar) itemView.findViewById(R.id.determinateBar);
+
         }
 
         public void bind(ScheduleItem si){
             item = si;
             title.setText(item.getTitle());
             details.setText(item.getDescription());
+            notes.setText(item.getNotes());
+            date.setText(item.getDueDate());
+            completion.setProgress(item.getCompletion());
         }
 
         @Override

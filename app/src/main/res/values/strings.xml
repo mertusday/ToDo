@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ToDo</string>
     <string name="title_activity_add">Add</string>
+    <string-array name="sorts">
+        <item>date</item>
+        <item>weight</item>
+        <item>completion</item>
+    </string-array>
 </resources>

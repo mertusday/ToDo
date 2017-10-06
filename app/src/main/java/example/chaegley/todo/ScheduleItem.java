@@ -21,8 +21,8 @@ public class ScheduleItem {
         this.description = description;
         this.notes = notes;
         this.finished = false;
-        this.completion = completion;
-        this.weight = weight;
+        this.setCompletion(completion);
+        this.setWeight(weight);
     }
 
     public String getTitle() {
@@ -61,13 +61,20 @@ public class ScheduleItem {
         return completion;
     }
 
-    public void setCompletion(int completion) {
-        this.completion = completion;
+    public void setCompletion(int c) {
+        if(c<0){
+            c=0;
+        }
+        if(c>100){
+            c=100;
+        }
+        this.completion = c;
     }
 
     public ScheduleItem getSubtask(int position) {
         return subtask.get(position);
     }
+
     public void setSubtask(ScheduleItem task) {
         subtask.add(task);
     }
@@ -76,8 +83,14 @@ public class ScheduleItem {
         return weight;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public void setWeight(int w) {
+        if(w<1){
+            w=1;
+        }
+        if(w>5){
+            w=5;
+        }
+        this.weight = w;
     }
 
     public String getNotes() {
