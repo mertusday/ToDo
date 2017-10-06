@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <View android:id="@+id/Middle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"/>
+
+    <Button
+        android:id="@+id/AddNewTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/Middle"
+        android:layout_alignParentBottom="true"
+        android:text="Add New Task" />
+
+    <Button
+        android:id="@+id/CancelAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/Middle"
+        android:layout_alignParentBottom="true"
+        android:text="Cancel" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Add in the details of the new task" />
+
+    <EditText
+    android:id="@+id/EditTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:text="Task Name"
+    android:layout_below="@+id/textView"/>
+
+    <EditText
+        android:id="@+id/EditDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Task Date"
+        android:inputType="datetime"
+        android:layout_below="@+id/EditTitle"/>
+
+    <EditText
+        android:id="@+id/EditDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Task Description"
+        android:layout_below="@+id/EditDate"/>
+
+    <EditText
+        android:id="@+id/EditNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Task Notes"
+        android:layout_below="@+id/EditDescription"/>
+
+    <EditText
+        android:id="@+id/EditCompletion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Task Percentage Completion"
+        android:inputType="number"
+        android:layout_below="@+id/EditNotes"/>
+
+    <EditText
+        android:id="@+id/EditWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Importance of task from 1 to 5"
+        android:inputType="number"
+        android:layout_below="@+id/EditCompletion"/>
+
+</RelativeLayout>

@@ -1,24 +1,28 @@
 package example.chaegley.todo;
 
-/**
- * Created by chaegley on 9/22/17.
- */
+import java.util.ArrayList;
+
 
 public class ScheduleItem {
 
     private String title; //title of task
     private String dueDate; // date task is due
     private String description; //description of task
+    private String notes; //description of task
     private boolean finished; //whether or not the task is completed
     private int completion; //percentage completed of task
+    private int weight; //how important the task is
+    private ArrayList<ScheduleItem> subtask = null;
 
 
-    public ScheduleItem(String title, String dueDate, String description, boolean finished, int completion) {
+    public ScheduleItem(String title, String dueDate, String description, String notes, int completion, int weight) {
         this.title = title;
         this.dueDate = dueDate;
         this.description = description;
-        this.finished = finished;
+        this.notes = notes;
+        this.finished = false;
         this.completion = completion;
+        this.weight = weight;
     }
 
     public String getTitle() {
@@ -59,5 +63,28 @@ public class ScheduleItem {
 
     public void setCompletion(int completion) {
         this.completion = completion;
+    }
+
+    public ScheduleItem getSubtask(int position) {
+        return subtask.get(position);
+    }
+    public void setSubtask(ScheduleItem task) {
+        subtask.add(task);
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }
