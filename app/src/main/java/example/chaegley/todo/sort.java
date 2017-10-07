@@ -12,6 +12,8 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class sort extends AppCompatActivity {
 
@@ -47,39 +49,29 @@ public class sort extends AppCompatActivity {
         int choice = spinner.getSelectedItemPosition();
 
 
-        if(choice == 2){
+        if(choice == 1){
             //sort by completion
-            int[] count = new int[101];
-            for(int i=0;i<act.size();i++){
-                count[act.get(i).getWeight()]++;
-            }
-            for(int i=1; i<count.length; i++){
-                count[i]=count[i]+count[i-1];
-            }
-            for(int i=0;i<act.size();i++){
-                returnList[count[act.get(i).getWeight()]]=act.get(i);
-                count[act.get(i).getWeight()]++;
-            }
 
-        }else if(choice == 1){
-            //sort by weight
+            Collections.sort(act, new Comparator<ScheduleItem>() {
+                @Override
+                public int compare(ScheduleItem one, ScheduleItem two)
+                {
 
-            int[] count = new int[5];
-            for(int i=0;i<act.size();i++){
-                count[act.get(i).getWeight()-1]++;
-            }
-            for(int i=1; i<=count.length; i++){
-                count[i]=count[i]+count[i-1];
-            }
-            for(int i=0;i<act.size();i++){
-                returnList[count[act.get(i).getWeight()]-1]=act.get(i);
-                count[act.get(i).getWeight()-1]++;
-            }
+                    return  ((Integer)one.getCompletion()).compareTo((Integer)two.getCompletion());
+                }
+            });
         }else {
-            //sort by date
+            Collections.sort(act, new Comparator<ScheduleItem>() {
+                @Override
+                public int compare(ScheduleItem one, ScheduleItem two)
+                {
+
+                    return  ((Integer)one.getWeight()).compareTo((Integer)two.getWeight());
+                }
+            });
         }
-        ArrayList<ScheduleItem> finalList = new ArrayList<ScheduleItem>(Arrays.asList(returnList));
-        ActivityList.getInstance().updateList(finalList);
+        //ArrayList<ScheduleItem> finalList = new ArrayList<ScheduleItem>(Arrays.asList(returnList));
+        ActivityList.getInstance().updateList(act);
 
     }
 

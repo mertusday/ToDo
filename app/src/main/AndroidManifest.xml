@@ -20,7 +20,7 @@
             android:name=".Add"
             android:label="@string/title_activity_add"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".sort"></activity>
+        <activity android:name=".sort" />
     </application>
 
 </manifest>

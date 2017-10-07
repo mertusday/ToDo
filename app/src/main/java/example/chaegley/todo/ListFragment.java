@@ -117,7 +117,9 @@ public class ListFragment extends Fragment {
 
         @Override
         public void onClick(View view){
-            System.out.println("toast");
+
+            //Intent intent = new Intent(getActivity(),Edit.class);
+            //startActivity(intent);
         }
     }
 
